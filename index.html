@@ -912,45 +912,14 @@
       letter-spacing: 0.06em;
     }
 
-    /* ─── Wood dividers ─────────────────────────────────────────── */
-    .wood-divider {
-      width: 100%;
-      height: 120px;
-      position: relative;
-      overflow: hidden;
-      display: block;
-    }
+    
+    
 
-    .wood-divider img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-    }
+    
 
-    .wood-divider::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to bottom,
-        rgba(245,242,234,0.3) 0%,
-        transparent 30%,
-        transparent 70%,
-        rgba(245,242,234,0.3) 100%
-      );
-    }
+    
 
-    .wood-divider-dark::after {
-      background: linear-gradient(
-        to bottom,
-        rgba(26,25,22,0.3) 0%,
-        transparent 30%,
-        transparent 70%,
-        rgba(26,25,22,0.3) 100%
-      );
-    }
+    
 
     .ember-line {
       height: 1.5px;
@@ -972,60 +941,30 @@
     .fade-up:nth-child(3) { transition-delay: 0.2s; }
     .fade-up:nth-child(4) { transition-delay: 0.3s; }
 
-    /* ─── Wood dividers ──────────────────────────────────────────── */
-    .wood-divider {
-      width: 100%;
-      height: 120px;
-      position: relative;
-      overflow: hidden;
-      display: block;
-    }
+    
+    
 
-    .wood-divider img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-      opacity: 0.88;
-    }
+    
 
-    .wood-divider::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(to right, rgba(245,242,234,0.35) 0%, transparent 15%, transparent 85%, rgba(245,242,234,0.35) 100%),
-        linear-gradient(to bottom, rgba(26,25,22,0.25) 0%, transparent 30%, transparent 70%, rgba(26,25,22,0.25) 100%);
-      pointer-events: none;
-    }
-    .photo-divider {
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-      border-top: 1.5px solid var(--ember);
-      border-bottom: 1.5px solid var(--ember);
-    }
-    .photo-divider img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .photo-divider::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to right, rgba(14,13,11,0.4) 0%, transparent 20%, transparent 80%, rgba(14,13,11,0.4) 100%);
-    }
-    #pd-1 { height: 200px; }
-    #pd-1 img { object-position: 56% 53%; opacity: 0.9; }
-    #pd-2 { height: 200px; }
-    #pd-2 img { object-position: 37% 22%; opacity: 0.9; }
-    #pd-3 { height: 200px; }
-    #pd-3 img { object-position: 50% 40%; opacity: 0.9; }
-    #pd-4 { height: 200px; }
-    #pd-4 img { object-position: 58% 64%; opacity: 0.9; }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    .pd { width:100%; overflow:hidden; position:relative; border-top:1.5px solid #b86818; border-bottom:1.5px solid #b86818; }
+    .pd img { width:100%; height:100%; object-fit:cover; display:block; }
+    #pd1 { height:200px; } #pd1 img { object-position:56% 53%; opacity:0.9; }
+    #pd2 { height:200px; } #pd2 img { object-position:37% 22%; opacity:0.9; }
+    #pd3 { height:200px; } #pd3 img { object-position:50% 40%; opacity:0.9; }
+    #pd4 { height:200px; } #pd4 img { object-position:58% 64%; opacity:0.9; }
   </style>
 </head>
 <body>
@@ -1113,13 +1052,10 @@
   </section>
 
   <!-- ─── Divider 1 ─────────────────────────────────────── -->
-  <div class="wood-divider">
-    <img src="divider3.jpg" alt="">
-  </div>
   <div class="ember-line"></div>
 
+  <div class="pd" id="pd1"><img src="divider1.jpg" alt=""></div>
   <!-- ─── Intro ──────────────────────────────────────────── -->
-  <div class="photo-divider" id="pd-1"><img src="divider1.jpg" alt=""></div>
 <section id="intro">
     <div class="container">
       <div class="section-header fade-up">
@@ -1154,15 +1090,9 @@
     </div>
   </section>
 
-  <div class="wood-divider"><img src="wood2.jpg" alt=""></div>
-
   <!-- ─── Divider 2 ─────────────────────────────────────── -->
   <div class="ember-line"></div>
-  <div class="wood-divider wood-divider-dark">
-    <img src="divider2.jpg" alt="">
-  </div>
-
-    <div class="photo-divider" id="pd-2"><img src="divider2.jpg" alt=""></div>
+  <div class="pd" id="pd2"><img src="divider2.jpg" alt=""></div>
   <!-- ─── Services ──────────────────────────────────────── -->
 <section id="services">
     <div class="container">
@@ -1209,15 +1139,9 @@
     </div>
   </section>
 
-  <div class="wood-divider"><img src="wood4.jpg" alt=""></div>
-
   <!-- ─── Divider 3 ─────────────────────────────────────── -->
-  <div class="wood-divider">
-    <img src="divider1.jpg" alt="">
-  </div>
   <div class="ember-line"></div>
-
-    <div class="photo-divider" id="pd-3"><img src="divider3.jpg" alt=""></div>
+  <div class="pd" id="pd3"><img src="divider3.jpg" alt=""></div>
   <!-- ─── Difference ────────────────────────────────────── -->
 <section id="difference">
     <div class="container">
@@ -1244,10 +1168,7 @@
       </div>
     </div>
   </section>
-
-  <div class="wood-divider"><img src="wood3.jpg" alt=""></div>
-
-    <div class="photo-divider" id="pd-4"><img src="divider4.jpg" alt=""></div>
+  <div class="pd" id="pd4"><img src="divider4.jpg" alt=""></div>
   <!-- ─── Reviews ──────────────────────────────────────── -->
 <section id="reviews">
     <div class="container">
@@ -1287,9 +1208,6 @@
 
   <!-- ─── Divider 4 ─────────────────────────────────────── -->
   <div class="ember-line"></div>
-  <div class="wood-divider wood-divider-dark">
-    <img src="divider4.jpg" alt="">
-  </div>
 
   <!-- ─── About ────────────────────────────────────────── -->
   <section id="about">
@@ -1318,8 +1236,6 @@
       </div>
     </div>
   </section>
-
-  <div class="wood-divider"><img src="wood1.jpg" alt=""></div>
 
   <!-- ─── CTA ──────────────────────────────────────────── -->
   <section id="cta">
