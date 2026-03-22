@@ -429,7 +429,6 @@
 
     .photo-divider {
       width: 100%;
-      height: 100px;
       position: relative;
       overflow: hidden;
       border-top: 1.5px solid var(--ember);
@@ -441,7 +440,6 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      opacity: 0.9;
     }
 
     .photo-divider::after {
@@ -457,9 +455,23 @@
       );
     }
 
-    .photo-divider-ember {
-      display: none;
-    }
+    .photo-divider-ember { display: none; }
+
+    /* Divider 1 — Before: The Studio */
+    .photo-divider:nth-of-type(1) { height: 90px; }
+    .photo-divider:nth-of-type(1) img { object-position: 100% 51%; opacity: 0.9; }
+
+    /* Divider 2 — Before: Services */
+    .photo-divider:nth-of-type(2) { height: 90px; }
+    .photo-divider:nth-of-type(2) img { object-position: 0% 40%; opacity: 0.89; }
+
+    /* Divider 3 — Before: Approach */
+    .photo-divider:nth-of-type(3) { height: 90px; }
+    .photo-divider:nth-of-type(3) img { object-position: 0% 68%; opacity: 0.9; }
+
+    /* Divider 4 — Before: Reviews */
+    .photo-divider:nth-of-type(4) { height: 100px; }
+    .photo-divider:nth-of-type(4) img { object-position: 0% 24%; opacity: 0.9; }
 
     .section-header {
       display: flex;
@@ -1127,7 +1139,7 @@
 
   <!-- ─── Intro ──────────────────────────────────────────── -->
   <div class="photo-divider">
-    <img src="divider1.jpg" alt="" style="object-position: center 40%;">
+    <img src="divider1.jpg" alt="" >
   </div>
 
   <section id="intro">
@@ -1174,7 +1186,7 @@
 
   <!-- ─── Services ──────────────────────────────────────── -->
   <div class="photo-divider">
-    <img src="divider2.jpg" alt="" style="object-position: center 60%;">
+    <img src="divider2.jpg" alt="" >
   </div>
 
   <section id="services">
@@ -1232,7 +1244,7 @@
 
   <!-- ─── Difference ────────────────────────────────────── -->
   <div class="photo-divider">
-    <img src="divider3.jpg" alt="" style="object-position: center 30%;">
+    <img src="divider3.jpg" alt="" >
   </div>
 
   <section id="difference">
@@ -1265,7 +1277,7 @@
 
   <!-- ─── Reviews ──────────────────────────────────────── -->
   <div class="photo-divider">
-    <img src="divider4.jpg" alt="" style="object-position: center 50%;">
+    <img src="divider4.jpg" alt="" >
   </div>
 
   <section id="reviews">
