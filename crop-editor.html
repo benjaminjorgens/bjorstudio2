@@ -7,137 +7,157 @@
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: system-ui, sans-serif; background: #1a1916; color: #e8e0d0; padding: 24px; }
-    h1 { font-size: 14px; letter-spacing: 0.2em; text-transform: uppercase; color: #b86818; margin-bottom: 24px; font-weight: 400; }
+    h1 { font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; color: #b86818; margin-bottom: 8px; font-weight: 400; }
+    .subtitle { font-size: 12px; color: rgba(200,168,112,0.5); margin-bottom: 32px; line-height: 1.6; }
     .divider-editor { margin-bottom: 40px; border: 0.5px solid rgba(200,168,112,0.2); border-radius: 4px; overflow: hidden; }
-    .editor-header { padding: 12px 16px; background: rgba(200,168,112,0.06); display: flex; align-items: center; justify-content: space-between; border-bottom: 0.5px solid rgba(200,168,112,0.15); }
-    .editor-title { font-size: 12px; letter-spacing: 0.1em; color: #b86818; }
-    .preview-strip { width: 100%; height: 100px; overflow: hidden; position: relative; border-top: 2px solid #b86818; border-bottom: 2px solid #b86818; background: #111; }
+    .editor-header { padding: 12px 16px; background: rgba(200,168,112,0.06); border-bottom: 0.5px solid rgba(200,168,112,0.15); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+    .editor-title { font-size: 13px; color: #e8e0d0; }
+    .editor-id { font-size: 11px; color: #b86818; font-family: monospace; margin-left: 8px; }
+    .editor-location { font-size: 11px; color: rgba(200,168,112,0.4); margin-top: 2px; }
+    .filename-badge { font-size: 11px; font-family: monospace; color: #9fe1cb; background: rgba(31,158,117,0.1); padding: 3px 8px; border-radius: 3px; }
+    .upload-area { padding: 12px 16px; border-bottom: 0.5px solid rgba(200,168,112,0.1); display: flex; align-items: center; gap: 12px; }
+    .upload-label { font-size: 11px; color: rgba(200,168,112,0.5); white-space: nowrap; }
+    input[type=file] { font-size: 11px; color: rgba(200,168,112,0.6); flex: 1; }
+    .preview-strip { width: 100%; overflow: hidden; position: relative; border-top: 2px solid #b86818; border-bottom: 2px solid #b86818; background: #111; }
     .preview-strip img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .no-image { font-size: 12px; color: rgba(200,168,112,0.3); padding: 40px; text-align: center; }
     .controls { padding: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; background: rgba(0,0,0,0.3); }
     .control-group { display: flex; flex-direction: column; gap: 6px; }
-    label { font-size: 11px; color: rgba(200,168,112,0.6); letter-spacing: 0.08em; }
+    .control-group.full { grid-column: 1 / -1; }
+    label { font-size: 11px; color: rgba(200,168,112,0.6); letter-spacing: 0.06em; display: flex; justify-content: space-between; }
+    label span { color: #e8e0d0; }
     input[type=range] { width: 100%; accent-color: #b86818; }
-    .val { font-size: 12px; color: #e8e0d0; font-variant-numeric: tabular-nums; }
-    .height-control { grid-column: 1 / -1; }
-    .output-box { margin: 12px 16px 16px; padding: 12px; background: rgba(0,0,0,0.4); border-radius: 3px; font-family: monospace; font-size: 11px; color: #b86818; border: 0.5px solid rgba(184,104,24,0.3); cursor: pointer; user-select: all; }
-    .output-box:hover { background: rgba(184,104,24,0.08); }
-    .copy-hint { font-size: 10px; color: rgba(200,168,112,0.4); margin-left: 8px; }
+    .output-box { margin: 0 16px 16px; padding: 10px 12px; background: rgba(0,0,0,0.4); border-radius: 3px; font-family: monospace; font-size: 11px; color: #b86818; border: 0.5px solid rgba(184,104,24,0.3); cursor: pointer; line-height: 1.6; }
+    .output-box:hover { background: rgba(184,104,24,0.06); }
+    .copy-hint { font-size: 10px; color: rgba(200,168,112,0.3); display: block; margin-top: 4px; }
     .final-output { margin-top: 40px; padding: 20px; background: rgba(0,0,0,0.5); border: 0.5px solid rgba(184,104,24,0.3); border-radius: 4px; }
     .final-output h2 { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #b86818; margin-bottom: 12px; font-weight: 400; }
-    .final-code { font-family: monospace; font-size: 11px; color: #9fe1cb; line-height: 1.8; white-space: pre-wrap; cursor: pointer; }
+    .final-code { font-family: monospace; font-size: 11px; color: #9fe1cb; line-height: 1.9; white-space: pre-wrap; cursor: pointer; padding: 12px; background: rgba(0,0,0,0.3); border-radius: 3px; }
     .final-code:hover { background: rgba(31,158,117,0.05); }
-    .tip { font-size: 11px; color: rgba(200,168,112,0.4); margin-top: 12px; line-height: 1.6; }
-    .upload-area { padding: 16px; border-bottom: 0.5px solid rgba(200,168,112,0.1); }
-    .upload-area input { font-size: 12px; color: rgba(200,168,112,0.6); }
+    .tip { font-size: 11px; color: rgba(200,168,112,0.35); margin-top: 12px; line-height: 1.7; }
   </style>
 </head>
 <body>
 
-<h1>Studio Bjør — Divider Crop Editor</h1>
+<h1>Studio Bjør — Divider Crop Editor v2</h1>
+<p class="subtitle">
+  Load each image using its file picker — load them in any order you like, each slot is clearly labeled.<br>
+  Output uses <code style="color:#b86818">#pd1–#pd4</code> IDs that match index.html exactly. Just paste the final CSS block.
+</p>
 
 <div id="editors"></div>
 
 <div class="final-output">
-  <h2>Final CSS — copy into index.html</h2>
-  <div class="final-code" id="final-code" onclick="copyFinal()">Adjust sliders above to generate CSS...</div>
-  <p class="tip">Click the code to copy it. Paste these object-position values into your index.html divider img tags.</p>
+  <h2>Final CSS — paste this into index.html to replace the 4 divider lines</h2>
+  <div class="final-code" id="final-code" onclick="copyFinal(this)">// Load images and adjust sliders above</div>
+  <p class="tip">Click to copy. In index.html find the 4 lines starting with #pd1, #pd2, #pd3, #pd4 and replace them with this block.</p>
 </div>
 
 <script>
-  const dividers = [
-    { id: 'divider1', label: 'Divider 1 — Before: The Studio', file: 'divider1.jpg' },
-    { id: 'divider2', label: 'Divider 2 — Before: Services', file: 'divider2.jpg' },
-    { id: 'divider3', label: 'Divider 3 — Before: Approach', file: 'divider3.jpg' },
-    { id: 'divider4', label: 'Divider 4 — Before: Reviews', file: 'divider4.jpg' },
+  const slots = [
+    { id: 'pd1', label: 'Divider 1', location: 'Appears before: The Studio section', file: 'divider1.jpg' },
+    { id: 'pd2', label: 'Divider 2', location: 'Appears before: Services section',   file: 'divider2.jpg' },
+    { id: 'pd3', label: 'Divider 3', location: 'Appears before: Approach section',   file: 'divider3.jpg' },
+    { id: 'pd4', label: 'Divider 4', location: 'Appears before: Reviews section',    file: 'divider4.jpg' },
   ];
 
-  const state = dividers.map(() => ({ x: 50, y: 50, height: 100, opacity: 90 }));
+  const state = slots.map(() => ({ x: 50, y: 50, height: 200, opacity: 90 }));
 
-  function buildEditor(d, i) {
+  function buildEditor(slot, i) {
     const s = state[i];
     return `
-      <div class="divider-editor" id="editor-${i}">
+      <div class="divider-editor">
         <div class="editor-header">
-          <span class="editor-title">${d.label}</span>
+          <div>
+            <span class="editor-title">${slot.label}</span>
+            <span class="editor-id">#${slot.id}</span>
+            <div class="editor-location">${slot.location}</div>
+          </div>
+          <div class="filename-badge">${slot.file}</div>
         </div>
         <div class="upload-area">
-          <input type="file" accept="image/*" onchange="loadImage(${i}, this)" id="file-${i}">
+          <span class="upload-label">Load ${slot.file}:</span>
+          <input type="file" accept="image/*" onchange="loadImage(${i}, this)">
         </div>
         <div class="preview-strip" id="strip-${i}" style="height:${s.height}px">
-          <img id="img-${i}" src="${d.file}" style="object-position:${s.x}% ${s.y}%; opacity:${s.opacity/100};" onerror="this.style.display='none'">
+          <div class="no-image" id="noimg-${i}">↑ Load image to preview</div>
         </div>
         <div class="controls">
           <div class="control-group">
-            <label>Horizontal position <span class="val" id="xval-${i}">${s.x}%</span></label>
+            <label>Horizontal position <span id="xval-${i}">${s.x}%</span></label>
             <input type="range" min="0" max="100" value="${s.x}" oninput="update(${i},'x',this.value)">
           </div>
           <div class="control-group">
-            <label>Vertical position <span class="val" id="yval-${i}">${s.y}%</span></label>
+            <label>Vertical position <span id="yval-${i}">${s.y}%</span></label>
             <input type="range" min="0" max="100" value="${s.y}" oninput="update(${i},'y',this.value)">
           </div>
-          <div class="control-group height-control">
-            <label>Strip height <span class="val" id="hval-${i}">${s.height}px</span></label>
-            <input type="range" min="40" max="300" value="${s.height}" oninput="update(${i},'height',this.value)">
+          <div class="control-group full">
+            <label>Strip height <span id="hval-${i}">${s.height}px</span></label>
+            <input type="range" min="40" max="400" value="${s.height}" oninput="update(${i},'height',this.value)">
           </div>
-          <div class="control-group">
-            <label>Opacity <span class="val" id="oval-${i}">${s.opacity}%</span></label>
-            <input type="range" min="20" max="100" value="${s.opacity}" oninput="update(${i},'opacity',this.value)">
+          <div class="control-group full">
+            <label>Opacity <span id="oval-${i}">${s.opacity}%</span></label>
+            <input type="range" min="10" max="100" value="${s.opacity}" oninput="update(${i},'opacity',this.value)">
           </div>
         </div>
-        <div class="output-box" id="css-${i}" onclick="copyCss(${i})">
-          <span>object-position: ${s.x}% ${s.y}%; opacity: ${s.opacity/100};</span>
-          <span class="copy-hint">click to copy</span>
+        <div class="output-box" onclick="copyLine(${i})">
+          <span id="line-${i}">#${slot.id} { height: ${s.height}px; } #${slot.id} img { object-position: ${s.x}% ${s.y}%; opacity: ${(s.opacity/100).toFixed(2)}; }</span>
+          <span class="copy-hint">click to copy just this line</span>
         </div>
       </div>
     `;
   }
 
-  document.getElementById('editors').innerHTML = dividers.map((d,i) => buildEditor(d,i)).join('');
+  document.getElementById('editors').innerHTML = slots.map((s,i) => buildEditor(s,i)).join('');
 
   function update(i, prop, val) {
     state[i][prop] = parseFloat(val);
     const s = state[i];
     const img = document.getElementById(`img-${i}`);
     const strip = document.getElementById(`strip-${i}`);
-    img.style.objectPosition = `${s.x}% ${s.y}%`;
-    img.style.opacity = s.opacity / 100;
+    if (img) {
+      img.style.objectPosition = `${s.x}% ${s.y}%`;
+      img.style.opacity = s.opacity / 100;
+    }
     strip.style.height = s.height + 'px';
     document.getElementById(`xval-${i}`).textContent = s.x + '%';
     document.getElementById(`yval-${i}`).textContent = s.y + '%';
     document.getElementById(`hval-${i}`).textContent = s.height + 'px';
     document.getElementById(`oval-${i}`).textContent = s.opacity + '%';
-    document.getElementById(`css-${i}`).innerHTML = `<span>object-position: ${s.x}% ${s.y}%; opacity: ${s.opacity/100};</span><span class="copy-hint">click to copy</span>`;
+    document.getElementById(`line-${i}`).textContent = getLine(i);
     updateFinal();
   }
 
+  function getLine(i) {
+    const s = state[i];
+    return `#${slots[i].id} { height: ${s.height}px; } #${slots[i].id} img { object-position: ${s.x}% ${s.y}%; opacity: ${(s.opacity/100).toFixed(2)}; }`;
+  }
+
   function updateFinal() {
-    const lines = dividers.map((d, i) => {
-      const s = state[i];
-      return `/* ${d.label} */\n.photo-divider:nth-of-type(${i+1}) { height: ${s.height}px; }\n.photo-divider:nth-of-type(${i+1}) img { object-position: ${s.x}% ${s.y}%; opacity: ${s.opacity/100}; }`;
-    });
-    document.getElementById('final-code').textContent = lines.join('\n\n');
+    const lines = slots.map((_, i) => '    ' + getLine(i));
+    document.getElementById('final-code').textContent = lines.join('\n');
   }
 
   function loadImage(i, input) {
-    if (input.files && input.files[0]) {
-      const reader = new FileReader();
-      reader.onload = e => {
-        document.getElementById(`img-${i}`).src = e.target.result;
-        document.getElementById(`img-${i}`).style.display = 'block';
-      };
-      reader.readAsDataURL(input.files[0]);
-    }
+    if (!input.files || !input.files[0]) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const strip = document.getElementById(`strip-${i}`);
+      const s = state[i];
+      strip.innerHTML = `<img id="img-${i}" src="${e.target.result}" style="width:100%;height:100%;object-fit:cover;display:block;object-position:${s.x}% ${s.y}%;opacity:${s.opacity/100};">`;
+    };
+    reader.readAsDataURL(input.files[0]);
   }
 
-  function copyCss(i) {
-    const s = state[i];
-    navigator.clipboard.writeText(`object-position: ${s.x}% ${s.y}%; opacity: ${s.opacity/100};`);
+  function copyLine(i) {
+    navigator.clipboard.writeText(getLine(i));
   }
 
-  function copyFinal() {
-    navigator.clipboard.writeText(document.getElementById('final-code').textContent);
-    document.getElementById('final-code').style.background = 'rgba(31,158,117,0.1)';
-    setTimeout(() => document.getElementById('final-code').style.background = '', 800);
+  function copyFinal(el) {
+    navigator.clipboard.writeText(el.textContent).then(() => {
+      el.style.background = 'rgba(31,158,117,0.1)';
+      setTimeout(() => el.style.background = 'rgba(0,0,0,0.3)', 800);
+    });
   }
 
   updateFinal();
