@@ -427,52 +427,6 @@
       padding: 100px 0;
     }
 
-    .photo-divider {
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-      border-top: 1.5px solid var(--ember);
-      border-bottom: 1.5px solid var(--ember);
-    }
-
-    .photo-divider img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .photo-divider::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        to right,
-        rgba(14,13,11,0.4) 0%,
-        transparent 20%,
-        transparent 80%,
-        rgba(14,13,11,0.4) 100%
-      );
-    }
-
-    .photo-divider-ember { display: none; }
-
-    /* Divider 1 — Before: The Studio */
-    #pd-1 { height: 90px; }
-    #pd-1 img { object-position: 100% 51%; opacity: 0.9; }
-
-    /* Divider 2 — Before: Services */
-    #pd-2 { height: 90px; }
-    #pd-2 img { object-position: 0% 40%; opacity: 0.89; }
-
-    /* Divider 3 — Before: Approach */
-    #pd-3 { height: 90px; }
-    #pd-3 img { object-position: 0% 68%; opacity: 0.9; }
-
-    /* Divider 4 — Before: Reviews */
-    #pd-4 { height: 100px; }
-    #pd-4 img { object-position: 0% 24%; opacity: 0.9; }
-
     .section-header {
       display: flex;
       align-items: baseline;
@@ -1045,6 +999,33 @@
         linear-gradient(to bottom, rgba(26,25,22,0.25) 0%, transparent 30%, transparent 70%, rgba(26,25,22,0.25) 100%);
       pointer-events: none;
     }
+    .photo-divider {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      border-top: 1.5px solid var(--ember);
+      border-bottom: 1.5px solid var(--ember);
+    }
+    .photo-divider img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .photo-divider::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(14,13,11,0.4) 0%, transparent 20%, transparent 80%, rgba(14,13,11,0.4) 100%);
+    }
+    #pd-1 { height: 200px; }
+    #pd-1 img { object-position: 56% 53%; opacity: 0.9; }
+    #pd-2 { height: 200px; }
+    #pd-2 img { object-position: 37% 22%; opacity: 0.9; }
+    #pd-3 { height: 200px; }
+    #pd-3 img { object-position: 50% 40%; opacity: 0.9; }
+    #pd-4 { height: 200px; }
+    #pd-4 img { object-position: 58% 64%; opacity: 0.9; }
   </style>
 </head>
 <body>
@@ -1138,11 +1119,8 @@
   <div class="ember-line"></div>
 
   <!-- ─── Intro ──────────────────────────────────────────── -->
-  <div class="photo-divider" id="pd-1">
-    <img src="divider1.jpg" alt="" >
-  </div>
-
-  <section id="intro">
+  <div class="photo-divider" id="pd-1"><img src="divider1.jpg" alt=""></div>
+<section id="intro">
     <div class="container">
       <div class="section-header fade-up">
         <span class="label">The studio</span>
@@ -1184,12 +1162,9 @@
     <img src="divider2.jpg" alt="">
   </div>
 
+    <div class="photo-divider" id="pd-2"><img src="divider2.jpg" alt=""></div>
   <!-- ─── Services ──────────────────────────────────────── -->
-  <div class="photo-divider" id="pd-2">
-    <img src="divider2.jpg" alt="" >
-  </div>
-
-  <section id="services">
+<section id="services">
     <div class="container">
       <div class="section-header fade-up">
         <span class="label">What we do</span>
@@ -1242,12 +1217,9 @@
   </div>
   <div class="ember-line"></div>
 
+    <div class="photo-divider" id="pd-3"><img src="divider3.jpg" alt=""></div>
   <!-- ─── Difference ────────────────────────────────────── -->
-  <div class="photo-divider" id="pd-3">
-    <img src="divider3.jpg" alt="" >
-  </div>
-
-  <section id="difference">
+<section id="difference">
     <div class="container">
       <div class="section-header fade-up">
         <span class="label">Our approach</span>
@@ -1275,12 +1247,9 @@
 
   <div class="wood-divider"><img src="wood3.jpg" alt=""></div>
 
+    <div class="photo-divider" id="pd-4"><img src="divider4.jpg" alt=""></div>
   <!-- ─── Reviews ──────────────────────────────────────── -->
-  <div class="photo-divider" id="pd-4">
-    <img src="divider4.jpg" alt="" >
-  </div>
-
-  <section id="reviews">
+<section id="reviews">
     <div class="container">
       <div class="section-header fade-up">
         <span class="label">Client voice</span>
